@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32630.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgreementManagementTask", "AgreementManagementTask\AgreementManagementTask.csproj", "{4D701C0E-89AB-4EF6-B255-DAA9F2D51E39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgreementManagementTask.Models", "Models\AgreementManagementTask.Models.csproj", "{0EAD9881-CDCD-479B-85E3-E7FBF5CB27B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D701C0E-89AB-4EF6-B255-DAA9F2D51E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D701C0E-89AB-4EF6-B255-DAA9F2D51E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D701C0E-89AB-4EF6-B255-DAA9F2D51E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D701C0E-89AB-4EF6-B255-DAA9F2D51E39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EAD9881-CDCD-479B-85E3-E7FBF5CB27B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EAD9881-CDCD-479B-85E3-E7FBF5CB27B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EAD9881-CDCD-479B-85E3-E7FBF5CB27B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EAD9881-CDCD-479B-85E3-E7FBF5CB27B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {184E5A04-0826-4916-87BD-0CC4FDB8DAA9}
+	EndGlobalSection
+EndGlobal
