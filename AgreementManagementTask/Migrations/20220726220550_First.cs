@@ -8,36 +8,11 @@ namespace AgreementManagementTask.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AgreementUsers",
+                name: "AspNetRoles",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AgreementUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -51,7 +26,8 @@ namespace AgreementManagementTask.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -65,7 +41,8 @@ namespace AgreementManagementTask.Migrations
                     TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,7 +70,7 @@ namespace AgreementManagementTask.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -114,7 +91,7 @@ namespace AgreementManagementTask.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -136,7 +113,7 @@ namespace AgreementManagementTask.Migrations
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -153,8 +130,8 @@ namespace AgreementManagementTask.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -177,7 +154,7 @@ namespace AgreementManagementTask.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -234,9 +211,9 @@ namespace AgreementManagementTask.Migrations
                 {
                     table.PrimaryKey("PK_Agreements", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Agreements_AgreementUsers_UserId",
+                        name: "FK_Agreements_AspNetUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AgreementUsers",
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -254,34 +231,34 @@ namespace AgreementManagementTask.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AgreementUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "47b3780e-94f5-447f-8b1e-80eb63399a41", "admin@gmail.com", false, false, null, null, null, "AQAAAAEAACcQAAAAECtE+30xHcn+FkIugJn4n8zE5wHPZgU2PYuPa1/LnPB9Ea2suQH20rZSXzFGYb9uHQ==", "1234567890", false, null, false, "Admin" });
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { 1, 0, "22e86490-710a-4202-9b24-6930e4adfafc", "User", "user@gmail.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEIMaiEXIingtPvzf2AG2c7cyqF0vVbgJHQLyunh1GOByK47Tz0cEiJCa+oyh7IIKlg==", "+37498780680", false, null, false, "UserSample" });
 
             migrationBuilder.InsertData(
                 table: "ProductGroups",
                 columns: new[] { "Id", "Active", "GroupCode", "GroupDescription" },
-                values: new object[,]
-                {
-                    { 1, true, 2, "test1" },
-                    { 2, true, 3, "test3" },
-                    { 3, false, 4, "test3" }
-                });
+                values: new object[] { 2, true, 6, "groupTwo" });
+
+            migrationBuilder.InsertData(
+                table: "ProductGroups",
+                columns: new[] { "Id", "Active", "GroupCode", "GroupDescription" },
+                values: new object[] { 1, true, 5, "groupOne" });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "Active", "Price", "ProductDescription", "ProductGroupId", "ProductNumber" },
-                values: new object[] { 1, true, 300f, "TestProductDescription", 2, 12 });
+                values: new object[] { 1, true, 100f, "SampleProductDescription", 2, 10 });
 
             migrationBuilder.InsertData(
                 table: "Agreements",
                 columns: new[] { "Id", "EffectiveDate", "ExpirationDate", "NewPrice", "ProductGroupId", "ProductId", "ProductPrice", "UserId" },
-                values: new object[] { 1, new DateTime(2022, 7, 26, 9, 13, 33, 287, DateTimeKind.Local).AddTicks(1372), new DateTime(2022, 7, 28, 9, 13, 33, 288, DateTimeKind.Local).AddTicks(4806), 200f, 1, 1, 300f, 1 });
+                values: new object[] { 1, new DateTime(2022, 7, 23, 2, 5, 49, 651, DateTimeKind.Local).AddTicks(6672), new DateTime(2022, 7, 31, 2, 5, 49, 652, DateTimeKind.Local).AddTicks(7533), 150f, 1, 1, 100f, 1 });
 
             migrationBuilder.InsertData(
                 table: "Agreements",
                 columns: new[] { "Id", "EffectiveDate", "ExpirationDate", "NewPrice", "ProductGroupId", "ProductId", "ProductPrice", "UserId" },
-                values: new object[] { 2, new DateTime(2022, 7, 26, 9, 13, 33, 288, DateTimeKind.Local).AddTicks(8325), new DateTime(2022, 7, 28, 9, 13, 33, 288, DateTimeKind.Local).AddTicks(8333), 200f, 1, 1, 300f, 1 });
+                values: new object[] { 2, new DateTime(2022, 7, 23, 2, 5, 49, 652, DateTimeKind.Local).AddTicks(9956), new DateTime(2022, 7, 31, 2, 5, 49, 652, DateTimeKind.Local).AddTicks(9962), 250f, 1, 1, 100f, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Agreements_ProductGroupId",
@@ -374,9 +351,6 @@ namespace AgreementManagementTask.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "AgreementUsers");
 
             migrationBuilder.DropTable(
                 name: "Products");

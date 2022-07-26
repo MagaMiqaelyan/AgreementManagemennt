@@ -1,4 +1,5 @@
 using AgreementManagementTask.DataBase;
+using AgreementManagementTask.Models;
 using AgreementManagementTask.Services;
 
 using Microsoft.AspNetCore.Builder;
@@ -39,11 +40,13 @@ namespace AgreementManagementTask
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
+            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>().AddDefaultTokenProviders()
                     .AddEntityFrameworkStores<AgreementDbContext>();
 
-
-            services.AddScoped<IService, AgreementService>();
+            services.AddScoped<IService<Agreement>, AgreementService>();
+            services.AddScoped<IService<Product>, ProductService>();
+            services.AddScoped<IService<ProductGroup>, ProductGroupService>();
+            services.AddScoped<IService<User>, UserService>();
 
             services.ConfigureApplicationCookie(options =>
             {
@@ -65,14 +68,12 @@ namespace AgreementManagementTask
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

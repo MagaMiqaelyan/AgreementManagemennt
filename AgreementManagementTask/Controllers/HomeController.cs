@@ -15,14 +15,10 @@ namespace AgreementManagementTask.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IService _agreementService;
 
-        public HomeController(ILogger<HomeController> logger,IService service)
+        public HomeController(ILogger<HomeController> logger)
         {
-            service.Add();
-            service.Update();
             _logger = logger;
-            _agreementService = service;
         }
 
         public IActionResult Index()
