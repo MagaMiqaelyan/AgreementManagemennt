@@ -24,7 +24,7 @@ namespace AgreementManagementTask.Services
             oldAgreement.ProductId = agreement.ProductId;
             oldAgreement.ProductGroup = agreement.ProductGroup;
             oldAgreement.ProductGroupId = agreement.ProductGroupId;
-            AgreementDbContext.SaveChanges();
+            SaveDataBaseChanges();
         }
     }
 

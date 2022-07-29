@@ -8,7 +8,7 @@ namespace AgreementManagementTask.Models
         public int Id { get; set; }
         public int ProductGroupId { get; set; }
         [ForeignKey("ProductGroupId")]
-        public ProductGroup ProdGroup { get; set; }
+        public ProductGroup ProductGroup { get; set; }
         public string ProductDescription { get; set; }
         public int ProductNumber { get; set; }
         public float Price { get; set; }

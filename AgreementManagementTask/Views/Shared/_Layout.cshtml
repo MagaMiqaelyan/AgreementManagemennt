@@ -7,58 +7,74 @@
 @inject SignInManager<IdentityUser<int>> SignInManager
 @inject UserManager<IdentityUser<int>> UserManager
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AgreementManagementTask</title>
+    <title>@ViewData["Title"] - Agreement Management</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AgreementManagementTask</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Agreement" asp-action="Index">Agreements</a>
-                            </li>
+<body 
+         style="background-image: url('https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjk2MC1uaW5nLTA1LWtsaG9pcno3LmpwZw.jpg'); 
+background-repeat: no-repeat; background-size:100% 100% ">
+    <div class="view full-page-intro">
+        <header>
+            <nav  class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Agreement Management</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_LoginPartial" />
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Agreement" asp-action="Index">Agreements</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Product" asp-action="Index">Product</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="ProductGroup" asp-action="Index">Product Group</a>
-                            </li>
-                        </ul>
-                    }
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="ProductGroup" asp-action="Index">Product Group</a>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+
                 </div>
+            </nav>
+        </header>
 
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - AgreementManagementTask - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2022 - Agreement Management - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://kit.fontawesome.com/e19c476714.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+
+    </div>
 </body>
 </html>

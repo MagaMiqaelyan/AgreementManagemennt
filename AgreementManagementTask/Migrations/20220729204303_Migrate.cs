@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AgreementManagementTask.Migrations
 {
-    public partial class First : Migration
+    public partial class Migrate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -233,32 +233,40 @@ namespace AgreementManagementTask.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "22e86490-710a-4202-9b24-6930e4adfafc", "User", "user@gmail.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEIMaiEXIingtPvzf2AG2c7cyqF0vVbgJHQLyunh1GOByK47Tz0cEiJCa+oyh7IIKlg==", "+37498780680", false, null, false, "UserSample" });
+                values: new object[] { 1, 0, "a5282b6d-dd4d-4304-98ea-cfae12e6b3a5", "User", "user@gmail.com", false, false, null, null, null, "AQAAAAEAACcQAAAAEJtiZeYciYuFI3BfvwdgTh4qDVBlj7KODBdt+HoqL+b/EFVLFRdUHtpPBApIsJPJjg==", "+37498780680", false, null, false, "UserSample" });
 
             migrationBuilder.InsertData(
                 table: "ProductGroups",
                 columns: new[] { "Id", "Active", "GroupCode", "GroupDescription" },
-                values: new object[] { 2, true, 6, "groupTwo" });
-
-            migrationBuilder.InsertData(
-                table: "ProductGroups",
-                columns: new[] { "Id", "Active", "GroupCode", "GroupDescription" },
-                values: new object[] { 1, true, 5, "groupOne" });
+                values: new object[,]
+                {
+                    { 1, true, 5, "groupOne" },
+                    { 2, true, 6, "groupTwo" },
+                    { 3, true, 8, "groupThree" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "Active", "Price", "ProductDescription", "ProductGroupId", "ProductNumber" },
-                values: new object[] { 1, true, 100f, "SampleProductDescription", 2, 10 });
+                values: new object[] { 1, true, 100f, "First Product Description", 2, 10 });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Active", "Price", "ProductDescription", "ProductGroupId", "ProductNumber" },
+                values: new object[] { 2, true, 350f, "Second Product Description", 3, 23 });
 
             migrationBuilder.InsertData(
                 table: "Agreements",
                 columns: new[] { "Id", "EffectiveDate", "ExpirationDate", "NewPrice", "ProductGroupId", "ProductId", "ProductPrice", "UserId" },
-                values: new object[] { 1, new DateTime(2022, 7, 23, 2, 5, 49, 651, DateTimeKind.Local).AddTicks(6672), new DateTime(2022, 7, 31, 2, 5, 49, 652, DateTimeKind.Local).AddTicks(7533), 150f, 1, 1, 100f, 1 });
-
-            migrationBuilder.InsertData(
-                table: "Agreements",
-                columns: new[] { "Id", "EffectiveDate", "ExpirationDate", "NewPrice", "ProductGroupId", "ProductId", "ProductPrice", "UserId" },
-                values: new object[] { 2, new DateTime(2022, 7, 23, 2, 5, 49, 652, DateTimeKind.Local).AddTicks(9956), new DateTime(2022, 7, 31, 2, 5, 49, 652, DateTimeKind.Local).AddTicks(9962), 250f, 1, 1, 100f, 1 });
+                values: new object[,]
+                {
+                    { 1, new DateTime(2022, 7, 26, 0, 43, 2, 779, DateTimeKind.Local).AddTicks(1456), new DateTime(2022, 8, 3, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(7037), 150f, 1, 1, 100f, 1 },
+                    { 2, new DateTime(2022, 7, 28, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8934), new DateTime(2022, 8, 3, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8940), 250f, 1, 1, 100f, 1 },
+                    { 3, new DateTime(2022, 7, 29, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8944), new DateTime(2022, 8, 4, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8945), 350f, 3, 1, 500f, 1 },
+                    { 4, new DateTime(2022, 7, 30, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8946), new DateTime(2022, 8, 2, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8947), 550f, 2, 1, 600f, 1 },
+                    { 5, new DateTime(2022, 7, 30, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8949), new DateTime(2022, 8, 6, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8950), 160f, 3, 1, 170f, 1 },
+                    { 6, new DateTime(2022, 7, 28, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8951), new DateTime(2022, 8, 9, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8953), 850f, 1, 1, 340f, 1 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Agreements_ProductGroupId",

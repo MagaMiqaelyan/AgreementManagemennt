@@ -11,6 +11,7 @@ namespace AgreementManagementTask.Services
         T Get(int id);
         IEnumerable<T> GetAll(Func<T, bool> filter = null, params IncludedType[] includedTypes);
         T FirstOrDefault(Func<T, bool> filter = null, params IncludedType[] includedTypes);
+        void SaveDataBaseChanges();
     }
 
     public enum IncludedType

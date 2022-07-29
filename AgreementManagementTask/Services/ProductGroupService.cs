@@ -18,7 +18,7 @@ namespace AgreementManagementTask.Services
             oldProductGroup.Active = productGroup.Active;
             oldProductGroup.GroupCode = productGroup.GroupCode;
             oldProductGroup.GroupDescription = productGroup.GroupDescription;
-            AgreementDbContext.SaveChanges();
+            SaveDataBaseChanges();
         }
     }
 }

@@ -16,10 +16,10 @@ namespace AgreementManagementTask.Services
         {
             var oldUser = AgreementDbContext.AgreementUsers.FirstOrDefault(s => s.Id == user.Id);
             if (oldUser == null) return;
-            oldUser.UserName = user.UserName;
-            oldUser.Id = user.Id;
+            //oldUser.UserName = user.UserName;
+            //oldUser.Id = user.Id;
             //...
-            AgreementDbContext.SaveChanges();
+            SaveDataBaseChanges();
         }
     }
 }

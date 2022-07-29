@@ -57,12 +57,12 @@ namespace AgreementManagementTask.DataBase
                 Id = 1,
                 UserName = "UserSample",
                 Email = "user@gmail.com",
-                LockoutEnabled = false,
+                LockoutEnabled = false, 
                 PhoneNumber = "+37498780680"
             };
 
             var passwordHasher = new PasswordHasher<User>();
-            user.PasswordHash = passwordHasher.HashPassword(user, "user111");
+            user.PasswordHash = passwordHasher.HashPassword(user, "3yu5?9RCqQfH!-M");
             return user;
         }
         private void SeedProduct(ModelBuilder builder)
@@ -70,7 +70,7 @@ namespace AgreementManagementTask.DataBase
             builder.Entity<ProductGroup>().HasData(
                new ProductGroup
                {
-                   Id = 1,
+                   Id = 1, 
                    Active = true,
                    GroupCode = 5,
                    GroupDescription = "groupOne",
@@ -81,6 +81,13 @@ namespace AgreementManagementTask.DataBase
                    Active = true,
                    GroupCode = 6,
                    GroupDescription = "groupTwo",
+               },
+               new ProductGroup
+               {
+                   Id = 3,
+                   Active = true,
+                   GroupCode = 8,
+                   GroupDescription = "groupThree",
                });
 
             builder.Entity<Product>().HasData(
@@ -91,8 +98,18 @@ namespace AgreementManagementTask.DataBase
                    Price = 100,
                    ProductGroupId = 2,
                    ProductNumber = 10,
-                   ProductDescription = "SampleProductDescription",
-               });
+                   ProductDescription = "First Product Description",
+               },
+               new Product
+               {
+                   Id = 2,
+                   Active = true,
+                   Price = 350,
+                   ProductGroupId = 3,
+                   ProductNumber = 23,
+                   ProductDescription = "Second Product Description",
+               }
+               );
         }
 
         private void SeedAgreement(ModelBuilder builder, User user)
@@ -113,10 +130,56 @@ namespace AgreementManagementTask.DataBase
                new Agreement
                {
                    Id = 2,
-                   EffectiveDate = DateTime.Now.AddDays(-4),
+                   EffectiveDate = DateTime.Now.AddDays(-2),
                    ExpirationDate = DateTime.Now.AddDays(4),
                    NewPrice = 250,
                    ProductPrice = 100,
+                   ProductGroupId = 1,
+                   ProductId = 1,
+                   UserId = user.Id,
+               },
+               new Agreement
+               {
+                   Id = 3,
+                   EffectiveDate = DateTime.Now.AddDays(-1),
+                   ExpirationDate = DateTime.Now.AddDays(5),
+                   NewPrice = 350,
+                   ProductPrice = 500,
+                   ProductGroupId = 3,
+                   ProductId = 1,
+                   UserId = user.Id,
+
+               },
+               new Agreement
+               {
+                   Id = 4,
+                   EffectiveDate = DateTime.Now,
+                   ExpirationDate = DateTime.Now.AddDays(3),
+                   NewPrice = 550,
+                   ProductPrice = 600,
+                   ProductGroupId = 2,
+                   ProductId = 1,
+                   UserId = user.Id,
+               },
+               new Agreement
+               {
+                   Id = 5,
+                   EffectiveDate = DateTime.Now,
+                   ExpirationDate = DateTime.Now.AddDays(7),
+                   NewPrice = 160,
+                   ProductPrice = 170,
+                   ProductGroupId = 3,
+                   ProductId = 1,
+                   UserId = user.Id,
+
+               },
+               new Agreement
+               {
+                   Id = 6,
+                   EffectiveDate = DateTime.Now.AddDays(-2),
+                   ExpirationDate = DateTime.Now.AddDays(10),
+                   NewPrice = 850,
+                   ProductPrice = 340,
                    ProductGroupId = 1,
                    ProductId = 1,
                    UserId = user.Id,

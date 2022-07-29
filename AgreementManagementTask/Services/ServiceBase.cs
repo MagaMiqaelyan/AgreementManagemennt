@@ -12,6 +12,7 @@ namespace AgreementManagementTask.Services
     {
         protected readonly DbSet<T> DbSet;
         protected readonly AgreementDbContext AgreementDbContext;
+
         public ServiceBase(AgreementDbContext agreementDbContext)
         {
             AgreementDbContext = agreementDbContext;
@@ -20,16 +21,21 @@ namespace AgreementManagementTask.Services
 
         public abstract void Update(T entity);
 
+        public void SaveDataBaseChanges()
+        {
+            AgreementDbContext.SaveChanges();
+        }
+
         public void Add(T entity)
         {
             DbSet.Add(entity);
-            AgreementDbContext.SaveChanges();
+            SaveDataBaseChanges();
         }
 
         public void Remove(T entity)
         {
             DbSet.Remove(entity);
-            AgreementDbContext.SaveChanges();
+            SaveDataBaseChanges();
         }
 
         public T Get(int id)

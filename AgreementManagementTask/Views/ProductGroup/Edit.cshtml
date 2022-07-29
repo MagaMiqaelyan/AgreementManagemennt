@@ -1,0 +1,80 @@
+﻿@model AgreementManagementTask.Models.ProductGroup
+@{ ViewData["Title"] = "Edit";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+                var title = "Create Product Group"; }
+<form method="post">
+    <div class="row p-3 border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.Id != 0)
+        {
+            title = "Edit Product Group";
+        }
+
+        <div class="hide">
+            <input asp-for="Id" class="form-control" hidden />
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 border-bottom">
+            <h2 class="text-dark">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4 p-1">
+                    <label asp-for="GroupCode"></label>
+                </div>
+                <div class="col-5 p-1">
+                    <input asp-for="GroupCode" class="form-control" />
+                    <span asp-validation-for="GroupCode" class="text-danger"></span>
+                </div>
+
+                <div class="col-4 p-1">
+                    <label class="align-content-center" asp-for="GroupDescription"></label>
+                </div>
+                <div class="col-5 p-1">
+                    <input asp-for="GroupDescription" class="form-control" />
+                    <span asp-validation-for="GroupDescription" class="text-danger"></span>
+                </div>
+
+                <div class="col-4 p-1">
+                    <label class="align-content-center" asp-for="Active"></label>
+                </div>
+                <div class="checkbox col-5 p-1">
+                    <label asp-for="Active">
+                        <input asp-for="Active" />
+                    </label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-5 offset-4">
+                    @if (Model.Id != 0)
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" style="background-color: #8168A9; " class="btn text-light form-control" asp-route-id="@Model.Id">Save</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" style="background-color: #8168A9; " class="btn text-light form-control" asp-route-id="@Model.Id">Cancel</a>
+                            </div>
+                        </div> 
+                     }
+                     else
+                     {
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" style="background-color: #8168A9; " class="btn text-light form-control">Create</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" style="background-color: #8168A9; " class="btn text-light form-control" asp-controller="Agreement" asp-area="">Back</a>
+                            </div>
+                        </div>
+                     }
+                </div>
+            </div>
+        </div>
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

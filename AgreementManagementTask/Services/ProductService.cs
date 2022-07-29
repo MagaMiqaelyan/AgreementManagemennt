@@ -19,7 +19,7 @@ namespace AgreementManagementTask.Services
             oldPoroduct.ProductDescription = product.ProductDescription;
             oldPoroduct.Active = product.Active;
             oldPoroduct.ProductGroupId = product.ProductGroupId;
-            AgreementDbContext.SaveChanges();
+            SaveDataBaseChanges();
         }
     }
 }

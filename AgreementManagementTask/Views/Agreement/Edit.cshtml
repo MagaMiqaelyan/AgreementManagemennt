@@ -1,0 +1,111 @@
+﻿@model AgreementManagementTask.ViewModels.AgreementViewModel
+@{ ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var title = "Create Agreement"; }
+
+<form method="post">
+    <div class="row p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.ModelId != 0)
+        {
+            title = "Edit Agreement";
+        }
+
+        <div class="hide">
+            <input asp-for="Agreement.Id" class="form-control" hidden />
+            <span asp-validation-for="Agreement.Id" class="text-danger"></span>
+        </div>
+        <div class="col-12">
+            <h2 class="text-dark">@title</h2>
+        </div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4 p-1">
+                    <label asp-for="Agreement.ProductGroup"></label>
+                </div>
+                <div class="col-5 p-1">
+                    @Html.DropDownListFor(m => m.Agreement.ProductGroupId, Model.ProductGroups, new { @class = "form-control" })
+                    <span asp-validation-for="Agreement.ProductGroup" class="text-danger"></span>
+                </div>
+
+                <div class="col-4 p-1">
+                    <label class="align-content-center" asp-for="Agreement.Product"></label>
+                </div>
+                <div class="col-5 p-1">
+                    @Html.DropDownListFor(m => m.Agreement.ProductId, Model.Products, new { @class = "form-control" })
+                    <span asp-validation-for="Agreement.Product" class="text-danger"></span>
+                </div>
+
+                <div class="col-4 p-1">
+                    <label class="align-content-center" asp-for="Agreement.EffectiveDate"></label>
+                </div>
+                <div class="col-5 p-1">
+                    <input asp-for="Agreement.EffectiveDate" autocomplete="none" value="" class="datepicker d-block ms-1 form-control" id="effective_date">
+                    <span asp-validation-for="Agreement.EffectiveDate" class="text-danger"></span>
+                </div>
+
+                <div class="col-4 p-1">
+                    <label asp-for="Agreement.ExpirationDate"></label>
+                </div>
+                <div class="col-5 p-1">
+                    <input asp-for="Agreement.ExpirationDate" autocomplete="none" value="" class="datepicker d-block ms-1 form-control" id="expiration_date">
+                    <span asp-validation-for="Agreement.ExpirationDate" class="text-danger"></span>
+                </div>
+
+                <div class="col-4 p-1">
+                    <label asp-for="Agreement.ProductPrice"></label>
+                </div>
+                <div class="col-5 p-1">
+                    <input asp-for="Agreement.ProductPrice" class="form-control" autocomplete="none" />
+                    <span asp-validation-for="Agreement.ProductPrice" class="text-danger"></span>
+                </div>
+                <div class="col-4 p-1">
+                    <label asp-for="Agreement.NewPrice"></label>
+                </div>
+                <div class="col-5 p-1">
+                    <input asp-for="Agreement.NewPrice" class="form-control" autocomplete="none" />
+                    <span asp-validation-for="Agreement.NewPrice" class="text-danger"></span>
+                </div>
+                <div class="col-4 p-1">
+                    <label asp-for="Agreement.Product.Active"></label>
+                </div>
+                <div class="checkbox col-5 p-1">
+                    <label asp-for="Agreement.Product.Active">
+                        <input asp-for="Agreement.Product.Active" />
+                    </label>
+                </div>
+            </div>
+            <div>
+                <div class="form-group row">
+                    <div class="col-5 offset-4">
+                        @if (Model.ModelId != 0)
+                        {
+            <div class="row">
+                <div class="col">
+                    <button type="submit" style="background-color: #8168A9; " class="btn text-light form-control" asp-route-id="@Model.Agreement.Id">Save</button>
+                </div>
+                <div class="col">
+                    <a asp-action="Index" style="background-color: #8168A9; " class="btn text-light form-control" asp-route-id="@Model.Agreement.Id">Cancel</a>
+                </div>
+            </div> }
+                        else
+                        {
+            <div class="row">
+                <div class="col">
+                    <button type="submit" style="background-color: #8168A9; " class="btn text-light form-control">Create</button>
+                </div>
+                <div class="col">
+                    <a asp-action="Index" style="background-color: #8168A9; " class="btn text-light form-control" asp-controller="Agreement" asp-area="">Back</a>
+                </div>
+            </div>}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

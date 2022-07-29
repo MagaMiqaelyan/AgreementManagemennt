@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgreementManagementTask.Migrations
 {
     [DbContext(typeof(AgreementDbContext))]
-    [Migration("20220726220550_First")]
-    partial class First
+    [Migration("20220729204303_Migrate")]
+    partial class Migrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,8 +63,8 @@ namespace AgreementManagementTask.Migrations
                         new
                         {
                             Id = 1,
-                            EffectiveDate = new DateTime(2022, 7, 23, 2, 5, 49, 651, DateTimeKind.Local).AddTicks(6672),
-                            ExpirationDate = new DateTime(2022, 7, 31, 2, 5, 49, 652, DateTimeKind.Local).AddTicks(7533),
+                            EffectiveDate = new DateTime(2022, 7, 26, 0, 43, 2, 779, DateTimeKind.Local).AddTicks(1456),
+                            ExpirationDate = new DateTime(2022, 8, 3, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(7037),
                             NewPrice = 150f,
                             ProductGroupId = 1,
                             ProductId = 1,
@@ -74,12 +74,56 @@ namespace AgreementManagementTask.Migrations
                         new
                         {
                             Id = 2,
-                            EffectiveDate = new DateTime(2022, 7, 23, 2, 5, 49, 652, DateTimeKind.Local).AddTicks(9956),
-                            ExpirationDate = new DateTime(2022, 7, 31, 2, 5, 49, 652, DateTimeKind.Local).AddTicks(9962),
+                            EffectiveDate = new DateTime(2022, 7, 28, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8934),
+                            ExpirationDate = new DateTime(2022, 8, 3, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8940),
                             NewPrice = 250f,
                             ProductGroupId = 1,
                             ProductId = 1,
                             ProductPrice = 100f,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            EffectiveDate = new DateTime(2022, 7, 29, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8944),
+                            ExpirationDate = new DateTime(2022, 8, 4, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8945),
+                            NewPrice = 350f,
+                            ProductGroupId = 3,
+                            ProductId = 1,
+                            ProductPrice = 500f,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            EffectiveDate = new DateTime(2022, 7, 30, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8946),
+                            ExpirationDate = new DateTime(2022, 8, 2, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8947),
+                            NewPrice = 550f,
+                            ProductGroupId = 2,
+                            ProductId = 1,
+                            ProductPrice = 600f,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            EffectiveDate = new DateTime(2022, 7, 30, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8949),
+                            ExpirationDate = new DateTime(2022, 8, 6, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8950),
+                            NewPrice = 160f,
+                            ProductGroupId = 3,
+                            ProductId = 1,
+                            ProductPrice = 170f,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            EffectiveDate = new DateTime(2022, 7, 28, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8951),
+                            ExpirationDate = new DateTime(2022, 8, 9, 0, 43, 2, 781, DateTimeKind.Local).AddTicks(8953),
+                            NewPrice = 850f,
+                            ProductGroupId = 1,
+                            ProductId = 1,
+                            ProductPrice = 340f,
                             UserId = 1
                         });
                 });
@@ -121,9 +165,18 @@ namespace AgreementManagementTask.Migrations
                             Id = 1,
                             Active = true,
                             Price = 100f,
-                            ProductDescription = "SampleProductDescription",
+                            ProductDescription = "First Product Description",
                             ProductGroupId = 2,
                             ProductNumber = 10
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            Price = 350f,
+                            ProductDescription = "Second Product Description",
+                            ProductGroupId = 3,
+                            ProductNumber = 23
                         });
                 });
 
@@ -164,6 +217,13 @@ namespace AgreementManagementTask.Migrations
                             Active = true,
                             GroupCode = 6,
                             GroupDescription = "groupTwo"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Active = true,
+                            GroupCode = 8,
+                            GroupDescription = "groupThree"
                         });
                 });
 
@@ -381,11 +441,11 @@ namespace AgreementManagementTask.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "22e86490-710a-4202-9b24-6930e4adfafc",
+                            ConcurrencyStamp = "a5282b6d-dd4d-4304-98ea-cfae12e6b3a5",
                             Email = "user@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEIMaiEXIingtPvzf2AG2c7cyqF0vVbgJHQLyunh1GOByK47Tz0cEiJCa+oyh7IIKlg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJtiZeYciYuFI3BfvwdgTh4qDVBlj7KODBdt+HoqL+b/EFVLFRdUHtpPBApIsJPJjg==",
                             PhoneNumber = "+37498780680",
                             PhoneNumberConfirmed = false,
                             TwoFactorEnabled = false,
@@ -421,13 +481,13 @@ namespace AgreementManagementTask.Migrations
 
             modelBuilder.Entity("AgreementManagementTask.Models.Product", b =>
                 {
-                    b.HasOne("AgreementManagementTask.Models.ProductGroup", "ProdGroup")
+                    b.HasOne("AgreementManagementTask.Models.ProductGroup", "ProductGroup")
                         .WithMany()
                         .HasForeignKey("ProductGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ProdGroup");
+                    b.Navigation("ProductGroup");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
